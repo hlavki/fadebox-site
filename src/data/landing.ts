@@ -7,13 +7,14 @@
  * Primary CTA destinations. The design ships these as anchors; wire them to the
  * real docs/install page and contact/scheduling link when those exist.
  */
+const base = import.meta.env.BASE_URL; // "/fadebox-site/" — respects Astro's base path
 export const links = {
-  install: "/docs/install", // "Install self-hosted"
-  demo: "/contact", // "Request a demo"
-  docs: "/docs",
-  apiDocs: "/docs/api",
+  install: `${base}docs/install`, // "Install self-hosted"
+  demo: `${base}contact`, // "Request a demo"
+  docs: `${base}docs`,
+  apiDocs: `${base}docs/api`,
   github: "https://github.com/fadebox",
-  contact: "/contact",
+  contact: `${base}contact`,
 };
 
 /**

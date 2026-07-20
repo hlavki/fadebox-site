@@ -1,10 +1,11 @@
 ---
 import { links, showPricing } from "../data/landing";
+const base = import.meta.env.BASE_URL;
 ---
 
 <nav class="nav container">
   <a class="brand" href="#" aria-label="fadebox — home">
-    <img class="lockup" src="/logo-lockup.svg" alt="fadebox" width="128" height="26" />
+    <img class="lockup" src={`${base}logo-lockup.svg`} alt="fadebox" width="128" height="26" />
   </a>
   <div class="spacer"></div>
   <a class="nav-link" href="#features">Features</a>

@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  // Deployed to the custom domain via the hlavki/fadebox.dev Pages repo.
-  site: 'https://fadebox.dev',
+  // Served from this repo's GitHub Pages under the /fadebox-site/ subpath.
+  site: 'https://hlavki.github.io',
+  base: '/fadebox-site/',
 });

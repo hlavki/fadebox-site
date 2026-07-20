@@ -1,13 +1,15 @@
 name: Deploy Site
 
 # Builds the Astro site and deploys it to this repository's GitHub Pages,
-# served at the custom domain fadebox.dev. Uses the official first-party Pages
-# actions with OIDC — no secrets or deploy keys to manage.
+# served at https://hlavki.github.io/fadebox-site/. Uses the official
+# first-party Pages actions with OIDC — no secrets or deploy keys to manage.
 #
 # One-time setup (no secret needed):
-#   1. hlavki/fadebox-site → Settings → Pages → Source: "GitHub Actions".
-#   2. Settings → Pages → Custom domain: fadebox.dev (public/CNAME keeps it set
-#      across deploys), then point the domain's DNS at GitHub Pages.
+#   hlavki/fadebox-site → Settings → Pages → Source: "GitHub Actions".
+#
+# To later switch to the fadebox.dev custom domain: set base back to '/' in
+# astro.config.mjs, re-add public/CNAME (fadebox.dev), and set the custom
+# domain in Settings → Pages with DNS pointed at GitHub Pages.
 
 on:
   push:
