@@ -1,33 +1,32 @@
-name: Deploy to fadebox.dev
+name: Deploy Site
 
-# Builds the Astro site and publishes the static output to the separate
-# hlavki/fadebox.dev repository, which serves the custom domain via GitHub Pages.
+# Builds the Astro site and deploys it to this repository's GitHub Pages,
+# served at the custom domain fadebox.dev. Uses the official first-party Pages
+# actions with OIDC — no secrets or deploy keys to manage.
 #
-# Required one-time setup (see the repo README / PR notes):
-#   1. Generate an SSH deploy key:
-#        ssh-keygen -t ed25519 -C "fadebox-site deploy" -f deploy_key -N ""
-#   2. In hlavki/fadebox.dev  → Settings → Deploy keys: add deploy_key.pub
-#      with "Allow write access".
-#   3. In hlavki/fadebox-site → Settings → Secrets and variables → Actions:
-#      add secret DEPLOY_KEY = contents of the private deploy_key file.
-#   4. In hlavki/fadebox.dev → Settings → Pages: set the source branch to the
-#      publish_branch below (main) and the custom domain to fadebox.dev.
+# One-time setup (no secret needed):
+#   1. hlavki/fadebox-site → Settings → Pages → Source: "GitHub Actions".
+#   2. Settings → Pages → Custom domain: fadebox.dev (public/CNAME keeps it set
+#      across deploys), then point the domain's DNS at GitHub Pages.
 
 on:
   push:
     branches: [master]
   workflow_dispatch:
 
+# OIDC-based deploy: read the repo, write to Pages, mint the id-token. No secret.
 permissions:
   contents: read
+  pages: write
+  id-token: write
 
-# Never run two deploys at once; a newer push supersedes an in-flight one.
+# Serialize deploys; a newer push cancels an in-flight one.
 concurrency:
-  group: deploy-fadebox-dev
+  group: pages
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -47,23 +46,21 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
+      - name: Build site
         run: pnpm build
 
-      - name: Deploy to hlavki/fadebox.dev
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          # SSH deploy key with write access to the target repo (recommended:
-          # scoped to that one repo). To use a Personal Access Token instead,
-          # replace this line with: personal_token: ${{ secrets.DEPLOY_TOKEN }}
-          deploy_key: ${{ secrets.DEPLOY_KEY }}
-          external_repository: hlavki/fadebox.dev
-          publish_dir: ./dist
-          publish_branch: main
-          # Writes a CNAME file so GitHub Pages keeps serving the custom domain.
-          cname: fadebox.dev
-          # Keep the target repo lean: one deploy commit, no accumulating history.
-          force_orphan: true
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Deploy from fadebox-site@${{ github.sha }}'
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
