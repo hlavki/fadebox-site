@@ -1,0 +1,27 @@
+---
+/**
+ * A skeleton placeholder block (dashed border, #f4f4f4 fill) marking where a
+ * real asset — screenshot, diagram, etc. — will go.
+ */
+interface Props {
+  height: number;
+  maxWidth?: number;
+}
+const { height, maxWidth } = Astro.props;
+const style = [
+  `height:${height}px`,
+  maxWidth ? `max-width:${maxWidth}px` : null,
+]
+  .filter(Boolean)
+  .join(";");
+---
+
+<div class="placeholder" style={style}>
+  <slot />
+</div>
+
+<style>
+  .placeholder {
+    width: 100%;
+  }
+</style>

@@ -1,0 +1,47 @@
+---
+import { links } from "../data/landing";
+---
+
+<section id="cta" class="section container final-cta">
+  <h2 class="heading">Running on your own host in 10 minutes</h2>
+  <p class="sub">
+    Two containers. Works offline. Your data never leaves your infra.
+  </p>
+  <div class="actions">
+    <a class="btn btn-primary" href={links.install}>Install self-hosted</a>
+    <a class="btn btn-secondary" href={links.demo}>Request a demo</a>
+  </div>
+</section>
+
+<style>
+  .final-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+    padding: 72px 0;
+  }
+  .heading {
+    font-size: 36px;
+    font-weight: 700;
+    max-width: 600px;
+  }
+  .sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin: 0;
+  }
+  .actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (max-width: 720px) {
+    .heading {
+      font-size: 30px;
+    }
+  }
+</style>

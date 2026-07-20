@@ -1,0 +1,147 @@
+/* Self-hosted brand fonts (bundled by Vite — no external CDN). */
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+
+/*
+ * Fadebox brand tokens.
+ * Palette derived from the logo: navy #15283C (wordmark / box) and indigo-blue
+ * #4B6BFB (the "x" and accent stripes). Neutrals are navy-tinted so grays read
+ * as part of the same family. Swap here to re-theme the whole site.
+ */
+:root {
+  /* Brand primitives (straight from the logo). */
+  --navy: #15283c;
+  --navy-deep: #0b1a2b;
+  --brand: #4b6bfb;
+  --brand-hover: #3452e6;
+  --brand-tint: #eef1fe;
+
+  /* Semantic tokens used across the UI. */
+  --ink: var(--navy);
+  --muted: #566573;
+  --faint: #8593a1;
+  --faint-strong: #9aa7b4;
+  --border: #e5e9ef;
+  --border-strong: #c4cdd8;
+  --placeholder: #f2f5f9;
+  --placeholder-icon: #e7ecf3;
+  --code-bg: var(--navy);
+  --code-text: #c9e8c9;
+
+  --radius-btn: 6px;
+  --radius-card: 10px;
+  --radius-badge: 99px;
+
+  --page-max: 1200px;
+  --page-pad: 40px;
+
+  --font: "Inter Variable", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, Menlo, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--ink);
+}
+
+a:hover {
+  color: var(--brand);
+}
+
+/* Layout container: centered, max 1200px, 40px side padding. */
+.container {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--page-pad);
+}
+
+/* Section rhythm: 64px vertical padding, 1px top borders between sections. */
+.section {
+  padding: 64px 0;
+  border-top: 1px solid var(--border);
+}
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 560px;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Buttons / CTA links. */
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 13px 26px;
+  border-radius: var(--radius-btn);
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--brand);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--brand-hover);
+  color: #fff;
+}
+
+.btn-secondary {
+  border-color: var(--border-strong);
+  color: var(--ink);
+}
+
+.btn-secondary:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+/* Placeholder blocks — mark where real assets go. */
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  background: var(--placeholder);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-card);
+  color: var(--faint-strong);
+  font-size: 14px;
+}
+
+/* Responsive: grids collapse and the CI section stacks on narrow viewports. */
+@media (max-width: 860px) {
+  :root {
+    --page-pad: 24px;
+  }
+}

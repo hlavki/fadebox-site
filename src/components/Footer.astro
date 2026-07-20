@@ -1,0 +1,40 @@
+---
+import { links } from "../data/landing";
+---
+
+<footer class="footer container">
+  <img class="lockup" src="/logo-lockup.svg" alt="fadebox" width="99" height="20" />
+  <a class="link" href={links.docs}>Docs</a>
+  <a class="link" href={links.github}>GitHub</a>
+  <a class="link" href={links.contact}>Contact</a>
+  <div class="spacer"></div>
+  <div class="copyright">© 2026 Fadebox</div>
+</footer>
+
+<style>
+  .footer {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    padding: 28px 0;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--faint);
+    flex-wrap: wrap;
+  }
+  .lockup {
+    display: block;
+    height: 20px;
+    width: auto;
+  }
+  .link {
+    color: var(--faint);
+    text-decoration: none;
+  }
+  .link:hover {
+    text-decoration: underline;
+  }
+  .spacer {
+    flex: 1;
+  }
+</style>

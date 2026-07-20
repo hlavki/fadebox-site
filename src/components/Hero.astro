@@ -1,0 +1,84 @@
+---
+import { links } from "../data/landing";
+import Placeholder from "./Placeholder.astro";
+---
+
+<header class="hero container">
+  <div class="badge">Self-hosted · Docker-native</div>
+  <h1 class="title">Self-hosted ephemeral environments on plain Docker</h1>
+  <p class="subhead">
+    One isolated copy of your stack per branch, per dev, per demo — each with
+    its own URL. No Kubernetes. No SaaS control plane.
+  </p>
+  <div class="actions">
+    <a class="btn btn-primary" href={links.install}>Install self-hosted</a>
+    <a class="btn btn-secondary" href={links.demo}>Request a demo</a>
+  </div>
+  <div class="shot">
+    <Placeholder height={420} maxWidth={920}>
+      Product screenshot — instance list with live status
+    </Placeholder>
+  </div>
+</header>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    padding: 88px 0 64px;
+  }
+  .badge {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brand);
+    background: var(--brand-tint);
+    border: 1px solid #d3dbfd;
+    border-radius: var(--radius-badge);
+    padding: 6px 14px;
+  }
+  .title {
+    font-size: 52px;
+    line-height: 1.08;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    max-width: 760px;
+    text-wrap: pretty;
+  }
+  .subhead {
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin: 0;
+    max-width: 600px;
+    text-wrap: pretty;
+  }
+  .actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .shot {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+  }
+
+  @media (max-width: 720px) {
+    .hero {
+      padding: 56px 0 48px;
+    }
+    .title {
+      font-size: 38px;
+    }
+    .subhead {
+      font-size: 17px;
+    }
+  }
+</style>

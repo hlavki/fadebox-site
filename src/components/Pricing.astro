@@ -1,0 +1,103 @@
+---
+import { tiers } from "../data/landing";
+---
+
+<section id="pricing" class="section container pricing">
+  <div class="section-head centered">
+    <h2 class="heading">Pricing</h2>
+    <p class="sub">Placeholder tiers — final model TBD.</p>
+  </div>
+  <div class="grid">
+    {
+      tiers.map((t) => (
+        <div class:list={["card", { emphasized: t.emphasized }]}>
+          <h3 class="name">{t.name}</h3>
+          <div class="price">{t.price}</div>
+          <p class="body">{t.body}</p>
+          <a
+            class:list={[
+              "btn",
+              t.ctaVariant === "primary" ? "btn-primary" : "btn-secondary",
+              "cta",
+            ]}
+            href="#cta"
+          >
+            {t.cta}
+          </a>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .pricing {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+  .centered {
+    text-align: center;
+    align-items: center;
+    max-width: none;
+  }
+  .heading {
+    font-size: 32px;
+    font-weight: 700;
+  }
+  .sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin: 0;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .card.emphasized {
+    border-width: 2px;
+    border-color: var(--brand);
+  }
+  .name {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .price {
+    font-size: 30px;
+    font-weight: 700;
+  }
+  .body {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin: 0;
+    flex: 1;
+  }
+  /* Full-width tier CTA, following the card's box; overrides the default
+     inline button padding. */
+  .cta {
+    padding: 11px 0;
+    font-size: 14px;
+  }
+  .cta.btn-secondary {
+    border-color: var(--ink);
+  }
+
+  @media (max-width: 720px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,71 @@
+---
+import { steps } from "../data/landing";
+import Placeholder from "./Placeholder.astro";
+---
+
+<section id="how" class="section container how">
+  <h2 class="heading">How it fits together</h2>
+  <Placeholder height={320}>
+    Architecture diagram — templates → environments → instances → Docker
+    runtimes (mTLS) → ingress URLs
+  </Placeholder>
+  <div class="grid">
+    {
+      steps.map((s) => (
+        <div class="step">
+          <div class="num">{s.num}</div>
+          <h3 class="step-title">{s.title}</h3>
+          <p class="step-body">{s.body}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .how {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+  .heading {
+    font-size: 32px;
+    font-weight: 700;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .step {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .num {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--faint-strong);
+  }
+  .step-title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .step-body {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 480px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

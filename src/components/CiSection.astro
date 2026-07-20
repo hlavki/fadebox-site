@@ -1,0 +1,69 @@
+---
+import { links } from "../data/landing";
+---
+
+<section class="section container ci">
+  <div class="copy">
+    <h2 class="heading">Wire it into CI in an afternoon</h2>
+    <p class="body">
+      Project-fenced API keys let pipelines create, deploy, and destroy
+      instances — one preview environment per pull request, torn down on merge.
+    </p>
+    <a class="doclink" href={links.apiDocs}>Read the API docs →</a>
+  </div>
+  <pre class="code"><code>$ curl -H "Authorization: Bearer fbx_…" \
+  …/instances/pr-42/deploy
+
+status: RUNNING
+url: pr-42-app.preview.example.com</code></pre>
+</section>
+
+<style>
+  .ci {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .copy {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .heading {
+    font-size: 32px;
+    font-weight: 700;
+  }
+  .body {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0;
+  }
+  .doclink {
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .code {
+    background: var(--code-bg);
+    color: var(--code-text);
+    border-radius: var(--radius-card);
+    padding: 22px 24px;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-x: auto;
+  }
+  .code code {
+    font-family: inherit;
+  }
+
+  @media (max-width: 720px) {
+    .ci {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+</style>

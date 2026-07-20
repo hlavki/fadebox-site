@@ -1,0 +1,78 @@
+---
+import { features } from "../data/landing";
+---
+
+<section id="features" class="section container features">
+  <div class="section-head">
+    <h2 class="heading">Everything a preview environment needs</h2>
+    <p class="sub">Built on Compose files you already have.</p>
+  </div>
+  <div class="grid">
+    {
+      features.map((f) => (
+        <div class="card">
+          <div class="icon" aria-hidden="true"></div>
+          <h3 class="card-title">{f.title}</h3>
+          <p class="card-body">{f.body}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+  .heading {
+    font-size: 32px;
+    font-weight: 700;
+  }
+  .sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin: 0;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .icon {
+    width: 36px;
+    height: 36px;
+    background: var(--placeholder-icon);
+    border-radius: 8px;
+  }
+  .card-title {
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .card-body {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 560px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
