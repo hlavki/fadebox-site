@@ -1,6 +1,6 @@
 ---
 import { links } from "../data/landing";
-import Placeholder from "./Placeholder.astro";
+import Screenshot from "./Screenshot.astro";
 ---
 
 <header class="hero container">
@@ -15,9 +15,11 @@ import Placeholder from "./Placeholder.astro";
     <a class="btn btn-secondary" href={links.demo}>Request a demo</a>
   </div>
   <div class="shot">
-    <Placeholder height={420} maxWidth={920}>
-      Product screenshot — instance list with live status
-    </Placeholder>
+    <Screenshot
+      name="dashboard"
+      alt="Fadebox dashboard — projects, environments, running services, and recent deployments with live status"
+      maxWidth={1000}
+    />
   </div>
 </header>
 
@@ -37,7 +39,7 @@ import Placeholder from "./Placeholder.astro";
     text-transform: uppercase;
     color: var(--brand);
     background: var(--brand-tint);
-    border: 1px solid #d3dbfd;
+    border: 1px solid var(--badge-border);
     border-radius: var(--radius-badge);
     padding: 6px 14px;
   }

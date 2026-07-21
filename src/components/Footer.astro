@@ -4,7 +4,10 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <footer class="footer container">
-  <img class="lockup" src={`${base}logo-lockup.svg`} alt="fadebox" width="99" height="20" />
+  <picture>
+    <source srcset={`${base}logo-lockup-dark.svg`} media="(prefers-color-scheme: dark)" />
+    <img class="lockup" src={`${base}logo-lockup.svg`} alt="fadebox" width="99" height="20" />
+  </picture>
   <a class="link" href={links.docs}>Docs</a>
   <a class="link" href={links.github}>GitHub</a>
   <a class="link" href={links.contact}>Contact</a>

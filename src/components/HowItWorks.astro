@@ -1,14 +1,14 @@
 ---
 import { steps } from "../data/landing";
-import Placeholder from "./Placeholder.astro";
+import Screenshot from "./Screenshot.astro";
 ---
 
 <section id="how" class="section container how">
   <h2 class="heading">How it fits together</h2>
-  <Placeholder height={320}>
-    Architecture diagram — templates → environments → instances → Docker
-    runtimes (mTLS) → ingress URLs
-  </Placeholder>
+  <Screenshot
+    name="project"
+    alt="A Fadebox project with two environments — each with its own services, startup waves, and a running instance"
+  />
   <div class="grid">
     {
       steps.map((s) => (

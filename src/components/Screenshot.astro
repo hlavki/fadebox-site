@@ -1,0 +1,48 @@
+---
+/**
+ * A framed product screenshot that swaps light/dark variants with the theme.
+ * Expects `${base}screenshots/<name>-light.png` and `-dark.png` to exist.
+ */
+interface Props {
+  name: string;
+  alt: string;
+  maxWidth?: number;
+}
+const { name, alt, maxWidth } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const style = maxWidth ? `max-width:${maxWidth}px` : undefined;
+---
+
+<picture class="shot" style={style}>
+  <source srcset={`${base}screenshots/${name}-dark.png`} media="(prefers-color-scheme: dark)" />
+  <img
+    class="shot-img"
+    src={`${base}screenshots/${name}-light.png`}
+    alt={alt}
+    width="2880"
+    height="1800"
+    loading="lazy"
+    decoding="async"
+  />
+</picture>
+
+<style>
+  .shot {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .shot-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    box-shadow: 0 18px 48px -24px rgba(21, 40, 60, 0.35);
+  }
+  @media (prefers-color-scheme: dark) {
+    .shot-img {
+      box-shadow: 0 18px 48px -20px rgba(0, 0, 0, 0.6);
+    }
+  }
+</style>
